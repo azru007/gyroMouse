@@ -1,20 +1,15 @@
 workflows:
   android-build:
     name: Android Build Workflow
-    description: Build the APK for the BluetoothGyroMouse project
+    # Remove unnecessary description and extra fields
     environment:
-      flutter: stable
-      android: true
-      gradle: true
-      xcode: latest
+      flutter: stable # If you're using Flutter, you can keep this line, otherwise remove it
     scripts:
       - name: Set up Android SDK
         script: |
           sdkmanager --install "platform-tools" "platforms;android-33" "build-tools;33.0.2"
           echo "SDK setup complete"
-
+      
       - name: Build the APK
         script: |
           ./gradlew assembleDebug
-        artifacts:
-          - app/build/outputs/apk/debug/app-debug.apk
